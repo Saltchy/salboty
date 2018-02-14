@@ -61,6 +61,7 @@ bot.on('message', message => {
             .addField("Bring Me The Horizon"," (https://www.youtube.com/watch?v=0kop2M-jpY4")
             .addField("Worst In Me","https://www.youtube.com/watch?v=n3C04Ev1caQ")
             .addField("Numb Sadest Version","https://www.youtube.com/watch?v=vtCKYZXpVKQ")
+            .addField("Crazy Frog","https://www.youtube.com/watch?v=k85mRPqvMbE")
             .setColor("0xFF8000")
             message.channel.sendEmbed(embed2);
     }
