@@ -33,7 +33,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "info"){
-        var embed = new Discord.RichEmbed()
+        var embed1 = new Discord.RichEmbed()
             .setTitle("Bot SalBotY à vos services !")
             .setDescription("J'ai été crée par Saltchy le 14/02/2018 à 19H33")
             .addField("Besoin d'aide avec mes différentes commandes ?","Tapez la commande *help")
@@ -44,7 +44,7 @@ bot.on('message', message => {
             .addField("GTAV","Rejoignez le crew des zizi dans le cul !")
             .setColor("0xFF8000")
             .setFooter("Bon moment parmis nous ! :)")
-        message.channel.sendEmbed(embed);
+        message.channel.sendEmbed(embed1);
     }
 
     if (message.content === prefix + "tchoin"){
