@@ -13,21 +13,21 @@ bot.login("NDA0MjUzODEzODkwMDg4OTYx.DWYPBg._01Tf6fB6G4GC21HW0MU4Y9q3Aw");
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
-        message.channel.sendMessage("Liste des commandes: \n -*help \n -*Salut \n -*Création \n -*Fabriquant \n -*embed \n -*Tchoin");
+        message.channel.sendMessage("Liste des commandes: \n - *help \n - *salut \n - *création \n - *fabriquant \n - *embed \n - *tchoin");
         console.log("commande help effectué");
     }
 
-    if (message.content === prefix + "Salut"){
+    if (message.content === prefix + "salut"){
         message.reply("Bien le bonjour. :)");
         console.log("commande Salut effectué");
     }
 
-    if (message.content === prefix + "Création"){
+    if (message.content === prefix + "création"){
         message.reply("SalBotY a été crée le 14/02/2018 à 19h33.");
         console.log("commande Création effectué");
     }
 
-    if (message.content === prefix + "Fabriquant"){
+    if (message.content === prefix + "fabriquant"){
         message.reply("SalBotY a été crée par Saltchy.");
         console.log("commande Création effectué");
     }
@@ -44,7 +44,7 @@ bot.on('message', message => {
         message.channel.sendEmbed(embed);
     }
 
-    if (message.content === prefix + "Tchoin"){
+    if (message.content === prefix + "tchoin"){
         message.reply("Lèche mon paff sale tchoin");
         console.log("commande Tchoin effectué");
     }
