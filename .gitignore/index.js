@@ -47,6 +47,23 @@ bot.on('message', message => {
         message.channel.sendEmbed(embed1);
     }
 
+    if (message.content === prefix + "music"){
+        var embed2 = new Discord.RichEmbed()
+            .addField("Shell Shocked","[Lien Youtube] (https://www.youtube.com/watch?v=0LMVfQlGLnA&list=RD0LMVfQlGLnA)")
+            .addField("No Glory ","[Lien Youtube] (https://www.youtube.com/watch?v=Tc-XxqEyolU&list=RDTc-XxqEyolU)")
+            .addField("Dead To Me","[Lien Youtube] (https://www.youtube.com/watch?v=LbOwN_Ow2AQ&list=RDLbOwN_Ow2AQ)")
+            .addField("Nothing Is Promised","[Lien Youtube] (https://www.youtube.com/watch?v=vnDqIlHsEqc&index=132&list=PLiBxv_H5jxbg4tCBI2OzV9z5TbBpuiZ60)")
+            .addField("Crown","[Lien Youtube] (https://www.youtube.com/watch?v=DSX-Fp8mM-g&list=RDDSX-Fp8mM-g)")
+            .addField("Get Me Out","[Lien Youtube] (https://www.youtube.com/watch?v=OSyKhqDsW14&index=3&list=RDDSX-Fp8mM-g)")
+            .addField("10 Seconds From Panic","[Lien Youtube] (https://www.youtube.com/watch?v=cPnXC2rkX9U&t)")
+            .addField("Fight Back","[Lien Youtube] (https://www.youtube.com/watch?v=CYDP_8UTAus)")
+            .addField("Monody","[Lien Youtube] (https://www.youtube.com/watch?v=rwNFY5EioQE)")
+            .addField("Bring Me The Horizon","[Lien Youtube] (https://www.youtube.com/watch?v=0kop2M-jpY4)")
+            .addField("Worst In Me","[Lien Youtube] (https://www.youtube.com/watch?v=n3C04Ev1caQ)")
+            .addField("Numb Sadest Version","[Lien Youtube] (https://www.youtube.com/watch?v=vtCKYZXpVKQ)")
+            // .addField("","[Lien Youtube] ()")
+    }
+
     if (message.content === prefix + "tchoin"){
         message.reply("Lèche mon paff sale tchoin");
         console.log("commande Tchoin effectué");
