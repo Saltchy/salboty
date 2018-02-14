@@ -5,7 +5,7 @@ var prefix = ("*")
 
 bot.on('ready', function () {
     bot.user.setGame("Command: *help");
-    console.log("Connectedç");
+    console.log("Connected");
 });
 
 bot.login("NDA0MjUzODEzODkwMDg4OTYx.DWYPBg._01Tf6fB6G4GC21HW0MU4Y9q3Aw");
