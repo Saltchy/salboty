@@ -36,9 +36,11 @@ bot.on('message', message => {
         var embed = new Discord.RichEmbed()
             .setTitle("Bot SalBotY à vos services !")
             .setDescription("J'ai été crée par Saltchy le 14/02/2018 à 19H33")
-            .addField("Besoin d'aide avec mes différentes commandes ?","Tapez la commande *help", true)
+            .addField("Besoin d'aide avec mes différentes commandes ?","Tapez la commande *help")
+            .addField("Mes autres copains bots:","Il y a le bot DJ FredBoat♪♪ qui met une ambiance de folie dans votre salon et le bot Fortnite Stats qui vous permet de voir vos statistiques sur Fortnite.")
+            .addField("FredBoat♪♪","Pour voir ces différentes commandes d'utilisation, tapez ;;help, il vous enverra un jolie pavé vous expliquant tout ce qu'il y a besoin de connaitre. :)")
+            .addField("Fortnite","Pour voir votre niveau, tapez !ftn + votre pseudo sur le jeu.")
             .addField("GTAV","Rejoignez le crew des zizis dans le cul !")
-            .addField("Fortnite","Pour voir votre niveau, tapez !ftn + votre pseudo sur le jeu.",true)
             .setColor("0xFF8000")
             .setFooter("Bon moment parmis nous ! :)")
         message.channel.sendEmbed(embed);
