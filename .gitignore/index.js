@@ -49,22 +49,20 @@ bot.on('message', message => {
 
     if (message.content === prefix + "music"){
         var embed2 = new Discord.RichEmbed()
-            .setTitle("Voici une petite liste de nos musics préférées du moment !")
-            .setDescription("Enjoy")
-            .addField("Shell Shocked","[Lien Youtube] (https://www.youtube.com/watch?v=0LMVfQlGLnA&list=RD0LMVfQlGLnA)")
-            .addField("No Glory ","[Lien Youtube] (https://www.youtube.com/watch?v=Tc-XxqEyolU&list=RDTc-XxqEyolU)")
-            .addField("Dead To Me","[Lien Youtube] (https://www.youtube.com/watch?v=LbOwN_Ow2AQ&list=RDLbOwN_Ow2AQ)")
-            .addField("Nothing Is Promised","[Lien Youtube] (https://www.youtube.com/watch?v=vnDqIlHsEqc&index=132&list=PLiBxv_H5jxbg4tCBI2OzV9z5TbBpuiZ60)")
-            .addField("Crown","[Lien Youtube] (https://www.youtube.com/watch?v=DSX-Fp8mM-g&list=RDDSX-Fp8mM-g)")
-            .addField("Get Me Out","[Lien Youtube] (https://www.youtube.com/watch?v=OSyKhqDsW14&index=3&list=RDDSX-Fp8mM-g)")
-            .addField("10 Seconds From Panic","[Lien Youtube] (https://www.youtube.com/watch?v=cPnXC2rkX9U&t)")
-            .addField("Fight Back","[Lien Youtube] (https://www.youtube.com/watch?v=CYDP_8UTAus)")
-            .addField("Monody","[Lien Youtube] (https://www.youtube.com/watch?v=rwNFY5EioQE)")
-            .addField("Bring Me The Horizon","[Lien Youtube] (https://www.youtube.com/watch?v=0kop2M-jpY4)")
-            .addField("Worst In Me","[Lien Youtube] (https://www.youtube.com/watch?v=n3C04Ev1caQ)")
-            .addField("Numb Sadest Version","[Lien Youtube] (https://www.youtube.com/watch?v=vtCKYZXpVKQ)")
+            .addField("Shell Shocked","https://www.youtube.com/watch?v=0LMVfQlGLnA&list=RD0LMVfQlGLnA")
+            .addField("No Glory ","https://www.youtube.com/watch?v=Tc-XxqEyolU&list=RDTc-XxqEyolU")
+            .addField("Dead To Me","https://www.youtube.com/watch?v=LbOwN_Ow2AQ&list=RDLbOwN_Ow2AQ")
+            .addField("Nothing Is Promised","https://www.youtube.com/watch?v=vnDqIlHsEqc&index=132&list=PLiBxv_H5jxbg4tCBI2OzV9z5TbBpuiZ60")
+            .addField("Crown","https://www.youtube.com/watch?v=DSX-Fp8mM-g&list=RDDSX-Fp8mM-g")
+            .addField("Get Me Out","https://www.youtube.com/watch?v=OSyKhqDsW14&index=3&list=RDDSX-Fp8mM-g")
+            .addField("10 Seconds From Panic","https://www.youtube.com/watch?v=cPnXC2rkX9U&t")
+            .addField("Fight Back","https://www.youtube.com/watch?v=CYDP_8UTAus")
+            .addField("Monody","https://www.youtube.com/watch?v=rwNFY5EioQE")
+            .addField("Bring Me The Horizon"," (https://www.youtube.com/watch?v=0kop2M-jpY4")
+            .addField("Worst In Me","https://www.youtube.com/watch?v=n3C04Ev1caQ")
+            .addField("Numb Sadest Version","https://www.youtube.com/watch?v=vtCKYZXpVKQ")
             .setColor("0xFF8000")
-            .setFooter("Jb la tchoin")
+            message.channel.sendEmbed(embed2);
     }
 
     if (message.content === prefix + "tchoin"){
