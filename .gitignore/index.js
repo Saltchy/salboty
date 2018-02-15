@@ -35,7 +35,7 @@ bot.on('message', message => {
     if (message.content === prefix + "info"){
         var embed1 = new Discord.RichEmbed()
             .setTitle("Bot SalBotY à vos services !")
-            .setDescription("J'ai été crée par Saltchy le 14/02/2018 à 19H33")
+            .setDescription("J'ai été crée par Saltchy le 15/02/2018 à 1H08")
             .addField("Besoin d'aide avec mes différentes commandes ?","Tapez la commande *help")
             .addField("Mes autres copains bots:","Il y a les bots DJ FredBoat♪♪ et Rythm qui mettrons une ambiance de folie dans vos salons et le bot Fortnite Stats qui vous permet de voir vos statistiques sur Fortnite.")
             .addField("Rythm","Pour voir ces différentes commandes d'utilisation, tapez !help, il vous enverra un jolie lien qui vous renverra sur une page Google avec toutes ces commandes d'utilisation.")
