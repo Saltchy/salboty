@@ -1,8 +1,24 @@
 const Discord = require('discord.js');
+// const YTDL = require('ytdl-core');
 const weather = require('weather-js')
 const bot = new Discord.Client()
 
 var prefix = ("*")
+
+// function play(connection, message){
+//     var server = servers[message.guild.id];
+
+//     server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
+
+//     server.queue.shift();
+
+//     server.dispatcher.on("end", function() {
+//         if (server.queue[0]) play(connection, message);
+//         else connection.disconnect();
+//     });
+// }
+
+// var servers = {};
 
 bot.on('ready', function () {
     bot.user.setGame("Command: *help");
@@ -14,7 +30,7 @@ bot.login("NDA0MjUzODEzODkwMDg4OTYx.DWYPBg._01Tf6fB6G4GC21HW0MU4Y9q3Aw");
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
-        message.channel.sendMessage("Liste des commandes: \n - *help \n - *salut \n - *création \n - *fabriquant \n - *info \n - *music \n - *tchoin");
+        message.channel.sendMessage("Liste des commandes: \n - *help \n - *salut \n - *création \n - *fabriquant \n - *info \n - *music \n - *tchoin \n - *weather");
         console.log("commande help effectué");
     }
 
@@ -101,11 +117,11 @@ bot.on('message', message => {
 
     if (msg.startsWith(prefix + 'WEATHER')) {
 
-        weather.find({search: args.join(" "), degreeType: 'F'}, function(err, result) {
+        weather.find({search: args.join(" "), degreeType: 'C'}, function(err, result) {
             if (err) message.channel.send(err);
 
-            if (result.lengh === 0) {
-                message.channel.send('**Please enter a valid location**')
+            if (result.length === 0) {
+                message.channel.send('**Please enter a valid location.**')
                 return;
             }
 
@@ -118,13 +134,52 @@ bot.on('message', message => {
                 .setThumbnail(current.imageUrl)
                 .setColor(0x00AE86)
                 .addField('Timezone',`UTC${location.timezone}`, true)
-                .addField('Degree Type',location.degreetype, true)
+                // .addField('Degree Type',location.degreeType, true)
                 .addField('Temperature',`${current.temperature} Degrees`, true)
                 .addField('Feels Like', `${current.feelslike} Degrees`, true)
                 .addField('Winds',current.winddisplay, true)
                 .addField('Humidity', `${current.humidity}%`, true)
 
+                // message.channel.send(JSON.stringify(result[0].current, null, 2));
+
             message.channel.send({embed});
         });
     }
+
+    // if (message.content === prefix + "play"){
+        
+    //     if (!args[1]){
+    //         message.channel.sendMessage("Please provide a link.");
+    //         return;
+    //     }
+
+    //     if (!message.member.voiceChannel){
+    //         message.channel.sendMessage("You must be in a voice channel");
+    //         return;
+    //     }
+    //     if (!servers[message.guild.id]) servers[message.guild.id] = {
+    //         queue: []
+    //     };
+
+    //         var server = servers[message.guild.id];
+
+    //         server.queue.push(args[1]);
+
+    //         if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
+    //             play(connection, message);
+    //         });
+    // }
+
+    // if (message.content === prefix + "skip"){
+    //     var server = servers[message.guild.id];
+
+    //     if (server.dispatcher) server.dispatcher.end();
+    // }
+
+    // if(message.content === prefix + "stop"){
+    //     var server = servers[message.guild.id];
+
+    //     if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+    // }
+    
 });
