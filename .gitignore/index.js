@@ -1,7 +1,24 @@
 const Discord = require('discord.js');
+const YTDL = require('ytdl-core');
+const weather = require('weather-js')
 const bot = new Discord.Client()
 
 var prefix = ("*")
+
+function play(connection, message){
+    var server = servers[message.guild.id];
+
+    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
+
+    server.queue.shift();
+
+    server.dispatcher.on("end", function() {
+        if (server.queue[0]) play(connection, message);
+        else connection.disconnect();
+    });
+}
+
+var servers = {};
 
 bot.on('ready', function () {
     bot.user.setGame("Command: *help");
@@ -96,5 +113,73 @@ bot.on('message', message => {
                 .catch(error => message.channel.send(`Error ${error}`));
         }
         purge();
-    }    
+    }
+
+    if (msg.startsWith(prefix + 'WEATHER')) {
+
+        weather.find({search: args.join(" "), degreeType: 'C'}, function(err, result) {
+            if (err) message.channel.send(err);
+
+            if (result.length === 0) {
+                message.channel.send('**Please enter a valid location.**')
+                return;
+            }
+
+            var current = result[0].current;
+            var location = result[0].location;
+
+            const embed = new Discord.RichEmbed()
+                .setDescription(`**${current.skytext}**`)
+                .setAuthor(`Weather for ${current.observationpoint}`)
+                .setThumbnail(current.imageUrl)
+                .setColor(0x00AE86)
+                .addField('Timezone',`UTC${location.timezone}`, true)
+                // .addField('Degree Type',location.degreeType, true)
+                .addField('Temperature',`${current.temperature} Degrees`, true)
+                .addField('Feels Like', `${current.feelslike} Degrees`, true)
+                .addField('Winds',current.winddisplay, true)
+                .addField('Humidity', `${current.humidity}%`, true)
+
+                // message.channel.send(JSON.stringify(result[0].current, null, 2));
+
+            message.channel.send({embed});
+        });
+    }
+
+    if (message.content === prefix + "play"){
+        
+        if (!args[1]){
+            message.channel.sendMessage("Please provide a link.");
+            return;
+        }
+
+        if (!message.member.voiceChannel){
+            message.channel.sendMessage("You must be in a voice channel");
+            return;
+        }
+        if (!servers[message.guild.id]) servers[message.guild.id] = {
+            queue: []
+        };
+
+            var server = servers[message.guild.id];
+
+            server.queue.push(args[1]);
+
+            if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
+                play(connection, message);
+            });
+    }
+
+    if (message.content === prefix + "skip"){
+        var server = servers[message.guild.id];
+
+        if (server.dispatcher) server.dispatcher.end();
+    }
+
+    if(message.content === prefix + "stop"){
+        var server = servers[message.guild.id];
+
+        if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+    }
+    
 });
