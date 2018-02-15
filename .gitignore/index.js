@@ -1,7 +1,24 @@
 const Discord = require('discord.js');
+// const YTDL = require('ytdl-core');
+const weather = require('weather-js')
 const bot = new Discord.Client()
 
 var prefix = ("*")
+
+// function play(connection, message){
+//     var server = servers[message.guild.id];
+
+//     server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
+
+//     server.queue.shift();
+
+//     server.dispatcher.on("end", function() {
+//         if (server.queue[0]) play(connection, message);
+//         else connection.disconnect();
+//     });
+// }
+
+// var servers = {};
 
 bot.on('ready', function () {
     bot.user.setGame("Command: *help");
@@ -23,7 +40,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "création"){
-        message.reply("SalBotY a été officiellement crée et mit en service le 15/02/2018 à 1H08.");
+        message.reply("SalBotY a été crée le 14/02/2018 à 19h33.");
         console.log("commande Création effectué");
     }
 
@@ -33,7 +50,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "info"){
-        var embed1 = new Discord.RichEmbed()
+        var embed = new Discord.RichEmbed()
             .setTitle("Bot SalBotY à vos services !")
             .setDescription("J'ai été crée par Saltchy le 15/02/2018 à 1H08")
             .addField("Besoin d'aide avec mes différentes commandes ?","Tapez la commande *help")
@@ -44,11 +61,11 @@ bot.on('message', message => {
             .addField("GTAV","Rejoignez le crew des zizi dans le cul !")
             .setColor("0xFF8000")
             .setFooter("Bon moment parmis nous ! :)")
-        message.channel.sendEmbed(embed1);
+        message.channel.sendEmbed(embed);
     }
 
     if (message.content === prefix + "music"){
-        var embed2 = new Discord.RichEmbed()
+        var embed = new Discord.RichEmbed()
             .addField("Shell Shocked","https://www.youtube.com/watch?v=0LMVfQlGLnA&list=RD0LMVfQlGLnA")
             .addField("No Glory ","https://www.youtube.com/watch?v=Tc-XxqEyolU&list=RDTc-XxqEyolU")
             .addField("Dead To Me","https://www.youtube.com/watch?v=LbOwN_Ow2AQ&list=RDLbOwN_Ow2AQ")
@@ -62,7 +79,7 @@ bot.on('message', message => {
             .addField("Worst In Me","https://www.youtube.com/watch?v=n3C04Ev1caQ")
             .addField("Numb Sadest Version","https://www.youtube.com/watch?v=vtCKYZXpVKQ")
             .setColor("0xFF8000")
-            message.channel.sendEmbed(embed2);
+            message.channel.sendEmbed(embed);
     }
 
     if (message.content === prefix + "tchoin"){
@@ -97,4 +114,70 @@ bot.on('message', message => {
         }
         purge();
     }
+
+    if (msg.startsWith(prefix + 'WEATHER')) {
+
+        weather.find({search: args.join(" "), degreeType: 'F'}, function(err, result) {
+            if (err) message.channel.send(err);
+
+            if (result.lengh === 0) {
+                message.channel.send('**Please enter a valid location**')
+                return;
+            }
+
+            var current = result[0].current;
+            var location = result[0].location;
+
+            const embed = new Discord.RichEmbed()
+                .setDescription(`**${current.skytext}**`)
+                .setAuthor(`Weather for ${current.observationpoint}`)
+                .setThumbnail(current.imageUrl)
+                .setColor(0x00AE86)
+                .addField('Timezone',`UTC${location.timezone}`, true)
+                .addField('Degree Type',location.degreetype, true)
+                .addField('Temperature',`${current.temperature} Degrees`, true)
+                .addField('Feels Like', `${current.feelslike} Degrees`, true)
+                .addField('Winds',current.winddisplay, true)
+                .addField('Humidity', `${current.humidity}%`, true)
+
+            message.channel.send({embed});
+            // message.channel.send(JSON.stringify(result[0].current, null, 2));
+        });
+    }
+
+    // if (message.content === prefix + "play"){
+        
+    //     if (!args[1]){
+    //         message.channel.sendMessage("Please provide a link.");
+    //         return;
+    //     }
+
+    //     if (!message.member.voiceChannel){
+    //         message.channel.sendMessage("You must be in a voice channel");
+    //         return;
+    //     }
+    //     if (!servers[message.guild.id]) servers[message.guild.id] = {
+    //         queue: []
+    //     };
+
+    //         var server = servers[message.guild.id];
+
+    //         server.queue.push(args[1]);
+
+    //         if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
+    //             play(connection, message);
+    //         });
+    // }
+
+    // if (message.content === prefix + "skip"){
+    //     var server = servers[message.guild.id];
+
+    //     if (server.dispatcher) server.dispatcher.end();
+    // }
+
+    // if(message.content === prefix + "stop"){
+    //     var server = servers[message.guild.id];
+
+    //     if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+    // }
 });
