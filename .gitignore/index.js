@@ -23,7 +23,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "création"){
-        message.reply("SalBotY a été crée le 14/02/2018 à 19h33.");
+        message.reply("SalBotY a été officiellement crée et mit en service le 15/02/2018 à 1H08.");
         console.log("commande Création effectué");
     }
 
